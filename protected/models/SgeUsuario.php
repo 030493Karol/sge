@@ -12,10 +12,12 @@
  * @property string $Instituicao
  *
  * The followings are the available model relations:
+ * @property SgeEVoluntario[] $sgeEVoluntarios
  * @property SgeEvento[] $sgeEventos
- * @property SgeEvento[] $sgeEventos1
- * @property SgeItemProgramacao[] $sgeItemProgramacaos
- * @property SgeTipoUsuario[] $sgeTipoUsuarios
+ * @property SgeInscreve[] $sgeInscreves
+ * @property SgeParticipa[] $sgeParticipas
+ * @property SgeSecretario[] $sgeSecretarios
+ * @property SgeUsuarioPossuiTipo[] $sgeUsuarioPossuiTipos
  */
 class SgeUsuario extends CActiveRecord
 {
@@ -35,8 +37,7 @@ class SgeUsuario extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('idUsuario, nome, cracha, email, senha, Instituicao', 'required'),
-			array('idUsuario', 'numerical', 'integerOnly'=>true),
+			array('nome, cracha, email, senha, Instituicao', 'required'),
 			array('nome, cracha, email, senha, Instituicao', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -52,10 +53,12 @@ class SgeUsuario extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'sgeEventos' => array(self::MANY_MANY, 'SgeEvento', 'sge_secretario(Usuario_idUsuario, Evento_idEvento)'),
-			'sgeEventos1' => array(self::HAS_MANY, 'SgeEvento', 'Usuario_idUsuario'),
-			'sgeItemProgramacaos' => array(self::MANY_MANY, 'SgeItemProgramacao', 'sge_participa(Usuario_idUsuario, ItemProgramacao_idItemProgramacao)'),
-			'sgeTipoUsuarios' => array(self::MANY_MANY, 'SgeTipoUsuario', 'sge_usuario_possui_tipo(Usuario_idUsuario, Tipo_Usuario_idTipo_Usuario)'),
+			'sgeEVoluntarios' => array(self::HAS_MANY, 'SgeEVoluntario', 'Usuario_idUsuario'),
+			'sgeEventos' => array(self::HAS_MANY, 'SgeEvento', 'Usuario_idUsuario'),
+			'sgeInscreves' => array(self::HAS_MANY, 'SgeInscreve', 'Usuario_idUsuario'),
+			'sgeParticipas' => array(self::HAS_MANY, 'SgeParticipa', 'Usuario_idUsuario'),
+			'sgeSecretarios' => array(self::HAS_MANY, 'SgeSecretario', 'Usuario_idUsuario'),
+			'sgeUsuarioPossuiTipos' => array(self::HAS_MANY, 'SgeUsuarioPossuiTipo', 'Usuario_idUsuario'),
 		);
 	}
 

@@ -7,7 +7,7 @@
  * @property integer $idItemProgramacao
  * @property string $data
  * @property string $hora
- * @property string $descrição
+ * @property string $Descricao
  * @property string $responsavel
  * @property integer $vagas
  * @property string $local
@@ -17,7 +17,7 @@
  * The followings are the available model relations:
  * @property SgeEvento $eventoIdEvento
  * @property SgeTipo $tipoIdTipo
- * @property SgeUsuario[] $sgeUsuarios
+ * @property SgeParticipa[] $sgeParticipas
  */
 class SgeItemProgramacao extends CActiveRecord
 {
@@ -37,12 +37,12 @@ class SgeItemProgramacao extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('idItemProgramacao, data, hora, descrição, local, Evento_idEvento, Tipo_idTipo', 'required'),
-			array('idItemProgramacao, vagas, Evento_idEvento, Tipo_idTipo', 'numerical', 'integerOnly'=>true),
-			array('descrição, responsavel, local', 'length', 'max'=>45),
+			array('data, hora, Descricao, local, Evento_idEvento, Tipo_idTipo', 'required'),
+			array('vagas, Evento_idEvento, Tipo_idTipo', 'numerical', 'integerOnly'=>true),
+			array('Descricao, responsavel, local', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('idItemProgramacao, data, hora, descrição, responsavel, vagas, local, Evento_idEvento, Tipo_idTipo', 'safe', 'on'=>'search'),
+			array('idItemProgramacao, data, hora, Descricao, responsavel, vagas, local, Evento_idEvento, Tipo_idTipo', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,7 +56,7 @@ class SgeItemProgramacao extends CActiveRecord
 		return array(
 			'eventoIdEvento' => array(self::BELONGS_TO, 'SgeEvento', 'Evento_idEvento'),
 			'tipoIdTipo' => array(self::BELONGS_TO, 'SgeTipo', 'Tipo_idTipo'),
-			'sgeUsuarios' => array(self::MANY_MANY, 'SgeUsuario', 'sge_participa(ItemProgramacao_idItemProgramacao, Usuario_idUsuario)'),
+			'sgeParticipas' => array(self::HAS_MANY, 'SgeParticipa', 'ItemProgramacao_idItemProgramacao'),
 		);
 	}
 
@@ -69,7 +69,7 @@ class SgeItemProgramacao extends CActiveRecord
 			'idItemProgramacao' => 'Id Item Programacao',
 			'data' => 'Data',
 			'hora' => 'Hora',
-			'descrição' => 'Descri��o',
+			'Descricao' => 'Descri��o',
 			'responsavel' => 'Responsavel',
 			'vagas' => 'Vagas',
 			'local' => 'Local',
@@ -99,7 +99,7 @@ class SgeItemProgramacao extends CActiveRecord
 		$criteria->compare('idItemProgramacao',$this->idItemProgramacao);
 		$criteria->compare('data',$this->data,true);
 		$criteria->compare('hora',$this->hora,true);
-		$criteria->compare('descrição',$this->descrição,true);
+		$criteria->compare('Descricao',$this->Descricao,true);
 		$criteria->compare('responsavel',$this->responsavel,true);
 		$criteria->compare('vagas',$this->vagas);
 		$criteria->compare('local',$this->local,true);

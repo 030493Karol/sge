@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in table 'sge_tipo':
  * @property integer $idTipo
- * @property string $descrição
+ * @property string $Descricao
  *
  * The followings are the available model relations:
  * @property SgeEvento[] $sgeEventos
@@ -29,12 +29,11 @@ class SgeTipo extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('idTipo, descrição', 'required'),
-			array('idTipo', 'numerical', 'integerOnly'=>true),
-			array('descrição', 'length', 'max'=>45),
+			array('Descricao', 'required'),
+			array('Descricao', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('idTipo, descrição', 'safe', 'on'=>'search'),
+			array('idTipo, Descricao', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,7 +57,7 @@ class SgeTipo extends CActiveRecord
 	{
 		return array(
 			'idTipo' => 'Id Tipo',
-			'descrição' => 'Descri��o',
+			'Descricao' => 'Descri��o',
 		);
 	}
 
@@ -81,7 +80,7 @@ class SgeTipo extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('idTipo',$this->idTipo);
-		$criteria->compare('descrição',$this->descrição,true);
+		$criteria->compare('Descricao',$this->Descricao,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -26,9 +26,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'Descrição'); ?>
-		<?php echo $form->textField($model,'Descrição',array('size'=>45,'maxlength'=>45)); ?>
-		<?php echo $form->error($model,'Descrição'); ?>
+		<?php echo $form->labelEx($model,'Descricao'); ?>
+		<?php echo $form->textField($model,'Descricao',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->error($model,'Descricao'); ?>
 	</div>
 
 	<div class="row">
@@ -47,6 +47,12 @@
 		<?php echo $form->labelEx($model,'DataFim'); ?>
 		<?php echo $form->textField($model,'DataFim'); ?>
 		<?php echo $form->error($model,'DataFim'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'Hora'); ?>
+		<?php echo $form->textField($model,'Hora',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->error($model,'Hora'); ?>
 	</div>
 
 	<div class="row">

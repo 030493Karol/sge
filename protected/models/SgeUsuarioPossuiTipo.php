@@ -4,8 +4,13 @@
  * This is the model class for table "sge_usuario_possui_tipo".
  *
  * The followings are the available columns in table 'sge_usuario_possui_tipo':
+ * @property integer $id
  * @property integer $Usuario_idUsuario
  * @property integer $Tipo_Usuario_idTipo_Usuario
+ *
+ * The followings are the available model relations:
+ * @property SgeUsuario $usuarioIdUsuario
+ * @property SgeTipoUsuario $tipoUsuarioIdTipoUsuario
  */
 class SgeUsuarioPossuiTipo extends CActiveRecord
 {
@@ -29,7 +34,7 @@ class SgeUsuarioPossuiTipo extends CActiveRecord
 			array('Usuario_idUsuario, Tipo_Usuario_idTipo_Usuario', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('Usuario_idUsuario, Tipo_Usuario_idTipo_Usuario', 'safe', 'on'=>'search'),
+			array('id, Usuario_idUsuario, Tipo_Usuario_idTipo_Usuario', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -41,6 +46,8 @@ class SgeUsuarioPossuiTipo extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'usuarioIdUsuario' => array(self::BELONGS_TO, 'SgeUsuario', 'Usuario_idUsuario'),
+			'tipoUsuarioIdTipoUsuario' => array(self::BELONGS_TO, 'SgeTipoUsuario', 'Tipo_Usuario_idTipo_Usuario'),
 		);
 	}
 
@@ -50,6 +57,7 @@ class SgeUsuarioPossuiTipo extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
+			'id' => 'ID',
 			'Usuario_idUsuario' => 'Usuario Id Usuario',
 			'Tipo_Usuario_idTipo_Usuario' => 'Tipo Usuario Id Tipo Usuario',
 		);
@@ -73,6 +81,7 @@ class SgeUsuarioPossuiTipo extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
+		$criteria->compare('id',$this->id);
 		$criteria->compare('Usuario_idUsuario',$this->Usuario_idUsuario);
 		$criteria->compare('Tipo_Usuario_idTipo_Usuario',$this->Tipo_Usuario_idTipo_Usuario);
 

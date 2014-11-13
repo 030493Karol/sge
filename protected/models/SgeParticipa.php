@@ -4,8 +4,13 @@
  * This is the model class for table "sge_participa".
  *
  * The followings are the available columns in table 'sge_participa':
+ * @property integer $id
  * @property integer $Usuario_idUsuario
  * @property integer $ItemProgramacao_idItemProgramacao
+ *
+ * The followings are the available model relations:
+ * @property SgeUsuario $usuarioIdUsuario
+ * @property SgeItemProgramacao $itemProgramacaoIdItemProgramacao
  */
 class SgeParticipa extends CActiveRecord
 {
@@ -29,7 +34,7 @@ class SgeParticipa extends CActiveRecord
 			array('Usuario_idUsuario, ItemProgramacao_idItemProgramacao', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('Usuario_idUsuario, ItemProgramacao_idItemProgramacao', 'safe', 'on'=>'search'),
+			array('id, Usuario_idUsuario, ItemProgramacao_idItemProgramacao', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -41,6 +46,8 @@ class SgeParticipa extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'usuarioIdUsuario' => array(self::BELONGS_TO, 'SgeUsuario', 'Usuario_idUsuario'),
+			'itemProgramacaoIdItemProgramacao' => array(self::BELONGS_TO, 'SgeItemProgramacao', 'ItemProgramacao_idItemProgramacao'),
 		);
 	}
 
@@ -50,6 +57,7 @@ class SgeParticipa extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
+			'id' => 'ID',
 			'Usuario_idUsuario' => 'Usuario Id Usuario',
 			'ItemProgramacao_idItemProgramacao' => 'Item Programacao Id Item Programacao',
 		);
@@ -73,6 +81,7 @@ class SgeParticipa extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
+		$criteria->compare('id',$this->id);
 		$criteria->compare('Usuario_idUsuario',$this->Usuario_idUsuario);
 		$criteria->compare('ItemProgramacao_idItemProgramacao',$this->ItemProgramacao_idItemProgramacao);
 

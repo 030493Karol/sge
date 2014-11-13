@@ -13,8 +13,8 @@
 	<?php echo CHtml::encode($data->Sigla); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('Descrição')); ?>:</b>
-	<?php echo CHtml::encode($data->Descrição); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('Descricao')); ?>:</b>
+	<?php echo CHtml::encode($data->Descricao); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('local')); ?>:</b>
@@ -29,11 +29,15 @@
 	<?php echo CHtml::encode($data->DataFim); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('Hora')); ?>:</b>
+	<?php echo CHtml::encode($data->Hora); ?>
+	<br />
+
+	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('Vagas')); ?>:</b>
 	<?php echo CHtml::encode($data->Vagas); ?>
 	<br />
 
-	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('Tipo_idTipo')); ?>:</b>
 	<?php echo CHtml::encode($data->Tipo_idTipo); ?>
 	<br />

@@ -6,21 +6,22 @@
  * The followings are the available columns in table 'sge_evento':
  * @property integer $idEvento
  * @property string $Sigla
- * @property string $Descrição
+ * @property string $Descricao
  * @property string $local
  * @property string $DataIni
  * @property string $DataFim
+ * @property string $Hora
  * @property string $Vagas
  * @property integer $Tipo_idTipo
  * @property integer $Usuario_idUsuario
  *
  * The followings are the available model relations:
- * @property SgeUsuario[] $sgeUsuarios
+ * @property SgeEVoluntario[] $sgeEVoluntarios
  * @property SgeTipo $tipoIdTipo
  * @property SgeUsuario $usuarioIdUsuario
- * @property SgeUsuario[] $sgeUsuarios1
+ * @property SgeInscreve[] $sgeInscreves
  * @property SgeItemProgramacao[] $sgeItemProgramacaos
- * @property SgeUsuario[] $sgeUsuarios2
+ * @property SgeSecretario[] $sgeSecretarios
  */
 class SgeEvento extends CActiveRecord
 {
@@ -40,12 +41,12 @@ class SgeEvento extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('Sigla, Descrição, local, DataIni, DataFim, Tipo_idTipo, Usuario_idUsuario', 'required'),
+			array('Sigla, Descricao, local, DataIni, DataFim, Tipo_idTipo, Usuario_idUsuario', 'required'),
 			array('Tipo_idTipo, Usuario_idUsuario', 'numerical', 'integerOnly'=>true),
-			array('Sigla, Descrição, local, Vagas', 'length', 'max'=>45),
+			array('Sigla, Descricao, local, Hora, Vagas', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('idEvento, Sigla, Descrição, local, DataIni, DataFim, Vagas, Tipo_idTipo, Usuario_idUsuario', 'safe', 'on'=>'search'),
+			array('idEvento, Sigla, Descricao, local, DataIni, DataFim, Hora, Vagas, Tipo_idTipo, Usuario_idUsuario', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -57,12 +58,12 @@ class SgeEvento extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'sgeUsuarios' => array(self::MANY_MANY, 'SgeUsuario', 'sge_e_voluntario(Evento_idEvento, Usuario_idUsuario)'),
+			'sgeEVoluntarios' => array(self::HAS_MANY, 'SgeEVoluntario', 'Evento_idEvento'),
 			'tipoIdTipo' => array(self::BELONGS_TO, 'SgeTipo', 'Tipo_idTipo'),
 			'usuarioIdUsuario' => array(self::BELONGS_TO, 'SgeUsuario', 'Usuario_idUsuario'),
-			'sgeUsuarios1' => array(self::MANY_MANY, 'SgeUsuario', 'sge_inscreve(Evento_idEvento, Usuario_idUsuario)'),
+			'sgeInscreves' => array(self::HAS_MANY, 'SgeInscreve', 'Evento_idEvento'),
 			'sgeItemProgramacaos' => array(self::HAS_MANY, 'SgeItemProgramacao', 'Evento_idEvento'),
-			'sgeUsuarios2' => array(self::MANY_MANY, 'SgeUsuario', 'sge_secretario(Evento_idEvento, Usuario_idUsuario)'),
+			'sgeSecretarios' => array(self::HAS_MANY, 'SgeSecretario', 'Evento_idEvento'),
 		);
 	}
 
@@ -74,10 +75,11 @@ class SgeEvento extends CActiveRecord
 		return array(
 			'idEvento' => 'Id Evento',
 			'Sigla' => 'Sigla',
-			'Descrição' => 'Descri��o',
+			'Descricao' => 'Descricao',
 			'local' => 'Local',
 			'DataIni' => 'Data Ini',
 			'DataFim' => 'Data Fim',
+			'Hora' => 'Hora',
 			'Vagas' => 'Vagas',
 			'Tipo_idTipo' => 'Tipo Id Tipo',
 			'Usuario_idUsuario' => 'Usuario Id Usuario',
@@ -104,10 +106,11 @@ class SgeEvento extends CActiveRecord
 
 		$criteria->compare('idEvento',$this->idEvento);
 		$criteria->compare('Sigla',$this->Sigla,true);
-		$criteria->compare('Descrição',$this->Descrição,true);
+		$criteria->compare('Descricao',$this->Descricao,true);
 		$criteria->compare('local',$this->local,true);
 		$criteria->compare('DataIni',$this->DataIni,true);
 		$criteria->compare('DataFim',$this->DataFim,true);
+		$criteria->compare('Hora',$this->Hora,true);
 		$criteria->compare('Vagas',$this->Vagas,true);
 		$criteria->compare('Tipo_idTipo',$this->Tipo_idTipo);
 		$criteria->compare('Usuario_idUsuario',$this->Usuario_idUsuario);

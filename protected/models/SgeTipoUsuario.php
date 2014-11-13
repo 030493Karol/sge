@@ -8,7 +8,7 @@
  * @property string $Descricao
  *
  * The followings are the available model relations:
- * @property SgeUsuario[] $sgeUsuarios
+ * @property SgeUsuarioPossuiTipo[] $sgeUsuarioPossuiTipos
  */
 class SgeTipoUsuario extends CActiveRecord
 {
@@ -44,7 +44,7 @@ class SgeTipoUsuario extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'sgeUsuarios' => array(self::MANY_MANY, 'SgeUsuario', 'sge_usuario_possui_tipo(Tipo_Usuario_idTipo_Usuario, Usuario_idUsuario)'),
+			'sgeUsuarioPossuiTipos' => array(self::HAS_MANY, 'SgeUsuarioPossuiTipo', 'Tipo_Usuario_idTipo_Usuario'),
 		);
 	}
 

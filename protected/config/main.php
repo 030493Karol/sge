@@ -8,7 +8,7 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'SGE - Sistema de Gestão de Eventos',
-	'theme'=>'shadow_dancer',
+	//'theme'=>'shadow_dancer',
 	'language'=>'pt_br',
 
 	// preloading 'log' component
@@ -49,10 +49,11 @@ return array(
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
-		
+		/*
 		'db'=>array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
 		),
+		*/
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(

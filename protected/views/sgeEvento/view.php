@@ -23,10 +23,11 @@ $this->menu=array(
 	'attributes'=>array(
 		'idEvento',
 		'Sigla',
-		'Descrição',
+		'Descricao',
 		'local',
 		'DataIni',
 		'DataFim',
+		'Hora',
 		'Vagas',
 		'Tipo_idTipo',
 		'Usuario_idUsuario',

@@ -22,8 +22,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'Descrição'); ?>
-		<?php echo $form->textField($model,'Descrição',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->label($model,'Descricao'); ?>
+		<?php echo $form->textField($model,'Descricao',array('size'=>45,'maxlength'=>45)); ?>
 	</div>
 
 	<div class="row">
@@ -39,6 +39,11 @@
 	<div class="row">
 		<?php echo $form->label($model,'DataFim'); ?>
 		<?php echo $form->textField($model,'DataFim'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'Hora'); ?>
+		<?php echo $form->textField($model,'Hora',array('size'=>45,'maxlength'=>45)); ?>
 	</div>
 
 	<div class="row">

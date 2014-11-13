@@ -47,11 +47,12 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'columns'=>array(
 		'idEvento',
 		'Sigla',
-		'Descrição',
+		'Descricao',
 		'local',
 		'DataIni',
 		'DataFim',
 		/*
+		'Hora',
 		'Vagas',
 		'Tipo_idTipo',
 		'Usuario_idUsuario',
